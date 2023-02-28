@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"net/http"
 	"sync"
 )
 
@@ -29,4 +30,9 @@ func NewHandler() *Handler {
 		Responses: make(map[string]ProxyRequest),
 		mu:        sync.RWMutex{},
 	}
+}
+
+func (h *Handler) InitRoutes() error {
+	http.HandleFunc("/", nil)
+	return http.ListenAndServe(":8080", nil)
 }
